@@ -1,4 +1,4 @@
-# 🧠 AI-Powered Pricing Optimizer for eCommerce Sellers
+#  AI-Powered Pricing Optimizer for eCommerce Sellers
 
 This project is an AI pricing assistant that helps sellers on platforms like eBay, Amazon, and Etsy determine optimal pricing using a machine learning model.
 

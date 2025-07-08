@@ -18,6 +18,13 @@ import requests
 import numpy as np
 import pandas as pd
 
+import streamlit as st
+
+try:
+    from clip_utils import get_clip_tags
+    st.info("✅ CLIP module loaded")
+except Exception as e:
+    st.error(f"❌ Failed to load CLIP module: {e}")
 
 # In[2]:
 

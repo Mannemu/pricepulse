@@ -39,7 +39,6 @@ from ebay_api import search_ebay_sandbox
 # Load model
 model = joblib.load("rf_model.joblib")
 
-st.set_page_config(page_title="AI Price Optimizer", layout="centered")
 os.makedirs("logs", exist_ok=True)
 
 if "log" not in st.session_state:

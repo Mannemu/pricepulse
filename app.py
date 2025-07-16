@@ -1,6 +1,26 @@
 # Copyright (c) 2025 Manna Mulanga. All Rights Reserved.
 # Unauthorized copying or redistribution of this software, via any medium, is strictly prohibited.
 # Proprietary and confidential. Written by Manna Mulanga <manna@example.com>.
+import streamlit as st
+from urllib.parse import urlencode
+
+# Load from your Streamlit secrets
+client_id = st.secrets["ebay"]["client_id"]
+redirect_uri = st.secrets["ebay"]["redirect_uri"]  # must match what you registered with eBay
+
+# Build the SANDBOX authorization URL
+base_url = "https://auth.sandbox.ebay.com/oauth2/authorize"
+params = {
+    "client_id": client_id,
+    "redirect_uri": redirect_uri,
+    "response_type": "code",
+    "scope": "https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/sell.inventory"
+}
+auth_url = f"{base_url}?{urlencode(params)}"
+
+# Show it in Streamlit
+st.markdown("### Step 1: Connect your eBay Sandbox Seller Account")
+st.markdown(f"[🔐 Click here to log in to eBay Sandbox and authorize →]({auth_url})")
 
 import streamlit as st
 import pandas as pd

@@ -3,7 +3,7 @@
 # Proprietary and confidential. Written by Manna Mulanga <manna@example.com>.
 import streamlit as st
 from urllib.parse import urlencode
-st.set_page_config(page_title="AI Price Optimizer", layout="centered"
+st.set_page_config(page_title="AI Price Optimizer", layout="centered")
 # Load from your Streamlit secrets
 client_id = st.secrets["ebay"]["client_id"]
 redirect_uri = st.secrets["ebay"]["redirect_uri"]  # must match what you registered with eBay

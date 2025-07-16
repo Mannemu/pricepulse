@@ -20,7 +20,7 @@ auth_url = f"{base_url}?{urlencode(params)}"
 
 # Show it in Streamlit
 st.markdown("### Step 1: Connect your eBay Sandbox Seller Account")
-st.markdown(f"[🔐 Click here to log in to eBay Sandbox and authorize →]({auth_url})")
+st.markdown(f"[Click here to log in to eBay Sandbox and authorize →]({auth_url})")
 
 import streamlit as st
 import pandas as pd
@@ -47,7 +47,7 @@ if "feedback" not in st.session_state:
     st.session_state.feedback = []
 
 st.sidebar.title("Navigation")
-view = st.sidebar.radio("Go to", ["📦 Price Prediction", "🧪 Feedback Form", "📊 Dev Dashboard"])
+view = st.sidebar.radio("Go to", ["Price Prediction", "Feedback Form", "Dev Dashboard"])
 
 # Gmail-compatible email sender
 def send_feedback_email(feedback):
@@ -62,7 +62,7 @@ Email: {feedback['email']}
 Timestamp: {feedback['timestamp']}
 """
         msg = MIMEText(body)
-        msg["Subject"] = "📩 New Feedback on AI Pricing Tool"
+        msg["Subject"] = "New Feedback on AI Pricing Tool"
         msg["From"] = email_conf["sender"]
         msg["To"] = email_conf["to"]
 
@@ -70,11 +70,11 @@ Timestamp: {feedback['timestamp']}
             server.login(email_conf["sender"], email_conf["password"])
             server.send_message(msg)
     except Exception as e:
-        st.warning(f"⚠️ Email send failed: {e}")
+        st.warning(f"Email send failed: {e}")
 
 # --- Page 1: Prediction ---
-if view == "📦 Price Prediction":
-    st.title("📦 AI-Powered Price Optimizer")
+if view == "Price Prediction":
+    st.title("AI-Powered Price Optimizer")
     st.markdown("Upload a product image (optional) and fill out product signals for a price suggestion.")
 
     uploaded_image = st.file_uploader("Upload product image (optional)", type=["jpg", "jpeg", "png"])
@@ -86,7 +86,7 @@ if view == "📦 Price Prediction":
         st.info(f"Predicted Tags: {', '.join(tags)}")
 
     # eBay Sandbox Search
-    st.subheader("🔎 eBay Competitor Price Checker (Sandbox)")
+    st.subheader(" eBay Competitor Price Checker (Sandbox)")
     query = st.text_input("Search eBay for similar items", placeholder="e.g. wireless earbuds")
     avg_comp_price = None
 
@@ -97,7 +97,7 @@ if view == "📦 Price Prediction":
             df = pd.DataFrame(competitors)
             st.dataframe(df)
             avg_comp_price = df["price"].mean()
-            st.success(f"💸 Average competitor price: ${avg_comp_price:.2f}")
+            st.success(f" Average competitor price: ${avg_comp_price:.2f}")
         else:
             st.warning("No competitor prices found in sandbox.")
 
@@ -140,11 +140,11 @@ if view == "📦 Price Prediction":
             raw_prediction = model.predict(input_data)[0]
             final_price = round(raw_prediction + seller_expenses, 2)
 
-            st.success(f"💡 Recommended Optimal Price: **${final_price}**")
+            st.success(f"Recommended Optimal Price: **${final_price}**")
             if price_mode == "Automatic Update":
-                st.info("🔁 Price will be automatically applied.")
+                st.info("Price will be automatically applied.")
             else:
-                st.warning("📝 Please apply the price manually in your store dashboard.")
+                st.warning("Please apply the price manually in your store dashboard.")
 
             log_entry = {
                 "timestamp": datetime.now().isoformat(),
@@ -163,8 +163,8 @@ if view == "📦 Price Prediction":
                 writer.writerow(log_entry)
 
 # --- Page 2: Feedback ---
-elif view == "🧪 Feedback Form":
-    st.title("🧪 Beta Tester Feedback")
+elif view == "Feedback Form":
+    st.title("Beta Tester Feedback")
     st.markdown("We’d love your feedback on how useful the prediction was!")
 
     with st.form("feedback_form"):
@@ -174,7 +174,7 @@ elif view == "🧪 Feedback Form":
         submitted = st.form_submit_button("Submit Feedback")
 
         if submitted:
-            st.success("✅ Thank you for your feedback!")
+            st.success("Thank you for your feedback!")
             feedback = {
                 "timestamp": datetime.now().isoformat(),
                 "accuracy": accuracy,
@@ -192,8 +192,8 @@ elif view == "🧪 Feedback Form":
             send_feedback_email(feedback)
 
 # --- Page 3: Dev Dashboard ---
-elif view == "📊 Dev Dashboard":
-    st.title("📊 Developer Dashboard")
+elif view == "Dev Dashboard":
+    st.title("Developer Dashboard")
 
     logs = st.session_state.get("log", [])
     feedbacks = st.session_state.get("feedback", [])
@@ -202,10 +202,10 @@ elif view == "📊 Dev Dashboard":
     if logs:
         df_logs = pd.DataFrame(logs)
         st.dataframe(df_logs[["timestamp", "price", "tags", "price_mode", "seller_expenses"]])
-        st.metric("🔢 Total Predictions", len(df_logs))
-        st.metric("💰 Average Price", f"${df_logs['price'].mean():.2f}")
+        st.metric("Total Predictions", len(df_logs))
+        st.metric("Average Price", f"${df_logs['price'].mean():.2f}")
         csv_data = df_logs.to_csv(index=False).encode("utf-8")
-        st.download_button("⬇️ Download Predictions CSV", csv_data, "predictions.csv", "text/csv")
+        st.download_button("⬇Download Predictions CSV", csv_data, "predictions.csv", "text/csv")
     else:
         st.info("No predictions yet.")
 

@@ -1,10 +1,9 @@
 # Copyright (c) 2025 Manna Mulanga. All Rights Reserved.
 # Unauthorized copying or redistribution of this software, via any medium, is strictly prohibited.
 # Proprietary and confidential. Written by Manna Mulanga <manna@example.com>.
-st.set_page_config(page_title="AI Price Optimizer", layout="centered")
 import streamlit as st
 from urllib.parse import urlencode
-
+st.set_page_config(page_title="AI Price Optimizer", layout="centered"
 # Load from your Streamlit secrets
 client_id = st.secrets["ebay"]["client_id"]
 redirect_uri = st.secrets["ebay"]["redirect_uri"]  # must match what you registered with eBay

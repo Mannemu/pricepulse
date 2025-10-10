@@ -1,25 +1,32 @@
-#  AI-Powered Pricing Optimizer for eCommerce Sellers
+# Pricepulse – AI Pricing Assistant
 
-This project is an AI pricing assistant that helps sellers on platforms like eBay, Amazon, and Etsy determine optimal pricing using a machine learning model.
+#Overview
+Pricepulse is a machine learning project designed to predict optimal pricing for e-commerce products. The goal is to help sellers maximize revenue while remaining competitive in the market.
 
-## Features
-- Streamlit web UI for instant predictions
-- Product image upload with simulated category tagging (CLIP-ready)
-- Feedback form for testers
-- Developer dashboard to track usage
-- GDPR-compliant and lightweight
+#Features
+- Data cleaning and preprocessing for large product datasets
+- Feature engineering for pricing models
+- Predictive modeling using Python (scikit-learn)
+- Data visualization with Matplotlib and Seaborn
 
-## Setup
-1. Clone the repo or unzip this package
-2. Ensure `rf_model.joblib` is in the folder (add manually if not included)
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the app:
-   ```bash
-   streamlit run app.py
-   ```
+#Tech Stack
+- Python, pandas, NumPy, scikit-learn
+- Matplotlib, Seaborn
+- Jupyter Notebook
 
-## License
+#How to Use
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run `pricepulse.ipynb` in Jupyter Notebook
+
+#Results / Insights
+- Built a model capable of predicting product prices with X% accuracy
+- Identified key features that most influence pricing
+- Visualized pricing trends and patterns for actionable insights
+
+#Author
+Manna Mulanga – [GitHub](https://github.com/Mannemu)
+
+
+#License
 MIT License
